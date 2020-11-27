@@ -56,10 +56,10 @@ export const SearchWrapper = styled.div`
     width: 240px;
   }
   .slide-exit {
-
+    transition: all .3s ease-out;
   }
   .slide-exit-active{
-
+    width: 160px;
   }
   .iconfont {
     position: absolute;
