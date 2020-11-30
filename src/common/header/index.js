@@ -9,19 +9,32 @@ import  { actionCreators } from './store';
 
 class Header extends Component {
    showSearchInfo  () {
-    if(this.props.focused) {
+    let panelList = []
+    let list = this.props.list.toJS()
+    console.log("22")
+    if(list.length > 0){
+      panelList = list.slice(this.props.currentPage*10, this.props.currentPage*10+10)
+    }
+    if(this.props.focused || this.props.mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={this.props.handleMouseIn}
+          onMouseLeave={this.props.handleMouseIn}
+        >
         <SearchInfoTitle>
           热门搜索
-          <SearchInfoSwitch>换一批</SearchInfoSwitch>
+          <SearchInfoSwitch onClick={() => this.props.handlePage(this.props.currentPage, this.props.totalPage)}>换一批</SearchInfoSwitch>
         </SearchInfoTitle>
         <SearchInfoList>
-          {this.props.list.map( (item, index) => {
-            return(
-              <SearchInfoItem>{item}</SearchInfoItem>
-            )
-          })}
+          {
+             panelList.map( (item, index) => {
+              return(
+                <SearchInfoItem>{item}</SearchInfoItem>
+              )
+            })
+          }
+   
+          
         </SearchInfoList>
       </SearchInfo>
       )
@@ -73,7 +86,10 @@ const mapStateToProps = (state) => {
   return {
    //把仓库里的数据映射到props
    focused: state.get('header').get('focused'),
-   list: state.get('header').get('list')
+   mouseIn: state.get('header').get('mouseIn'),
+   list: state.get('header').get('list'),
+   totalPage: state.get('header').get('totalPage'), //总页数
+   currentPage: state.get('header').get('currentPage'), // 当前页数
   }
 }
 
@@ -85,6 +101,20 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleInputBlur () {
       dispatch(actionCreators.searchFocus())
+    },
+    handleMouseIn(){
+      dispatch(actionCreators.Mouse_IN_Header())
+    },
+    handleMouseOut(){
+      dispatch(actionCreators.Mouse_IN_Header())
+    },
+    handlePage(cerrent,total){
+      if(cerrent<total-1){
+        cerrent += 1
+      }else {
+        cerrent = 1
+      }
+      dispatch(actionCreators.CustomCurrentPage(cerrent))
     }
   }
 }

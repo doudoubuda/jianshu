@@ -1,2 +1,5 @@
 export const SEARCH_FOCUS = 'header/SEARCH_FOCUS'
-export const SEARCH_HEADER_LIST = 'header/SEARCH_HEADER_LIST'
+export const SEARCH_HEADER_LIST = 'header/SEARCH_HEADER_LIST'  
+export const Custom_Current_Page = 'header/Custom_Current_Page'
+export const Custom_Total_Page  = 'header/Custom_Total_Page'
+export const Mouse_IN_Header = 'Mouse_IN_Header'
