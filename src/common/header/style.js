@@ -3,13 +3,15 @@ import logePic from '../../static/logo.jpg'
 
 export const HeaderWrapper =  styled.div`
   height: 56px;
+  min-width: 768px;
+  max-width: 1440px;
+  margin: 0 auto;
   border-bottom: 1px solid #f0f0f0
 `
 
 export const Logo =  styled.a`
   position: absolute;
   top: 0;
-  left: 0;
   display: block;
   height: 56px;
   width: 100px;
@@ -103,8 +105,8 @@ export const NavSearch = styled.input.attrs ({
 export const Addition = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
   height: 56px;
+  padding-left: 50px
 `
 
 export const Button = styled.div`
@@ -140,10 +142,22 @@ export const SearchInfoTitle = styled.div`
   color: #969696;
   line-height: 20px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `
 export const SearchInfoSwitch = styled.div`
-
+ .iconfont {
+  position: relative;
+  line-height：inherit;
+  right: 0;
+  font-size: 12px;
+  bottom: 0
+ }
+ .spin {
+   display: inline-block;
+   transition: all .3s ease-in;
+   transform-origin: center center;
+ }
 `
 
 export const SearchInfoList = styled.div`

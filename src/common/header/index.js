@@ -12,7 +12,7 @@ class Header extends Component {
     let panelList = []
     let list = this.props.list.toJS()
     console.log("22")
-    if(list.length > 0){
+    if(this.props.focused || this.props.mouseIn){
       panelList = list.slice(this.props.currentPage*10, this.props.currentPage*10+10)
     }
     if(this.props.focused || this.props.mouseIn) {
@@ -23,7 +23,13 @@ class Header extends Component {
         >
         <SearchInfoTitle>
           热门搜索
-          <SearchInfoSwitch onClick={() => this.props.handlePage(this.props.currentPage, this.props.totalPage)}>换一批</SearchInfoSwitch>
+          <SearchInfoSwitch onClick={() => this.props.handlePage(this.props.currentPage, this.props.totalPage, this.spinIcon)}>
+            
+            <span className="searchIcon">
+              <span ref={ (icon) => this.spinIcon = icon} className='iconfont spin'>&#xe7cf;</span> 
+              换一批          
+            </span>
+          </SearchInfoSwitch>
         </SearchInfoTitle>
         <SearchInfoList>
           {
@@ -49,6 +55,15 @@ class Header extends Component {
       <Nav>
         <NavItem className="left active">首页</NavItem>  
         <NavItem className="left">下载APP</NavItem>
+        <NavItem className="right">
+        <Addition>
+        <Button className="writting">
+          <span className="iconfont">&#xe600;</span>
+          写文章
+        </Button>
+        <Button className="reg">注册</Button>
+      </Addition>
+        </NavItem>
         <NavItem className="right">登录</NavItem>
         <NavItem className="right">
           <span className="iconfont">&#xe612;</span>
@@ -60,7 +75,7 @@ class Header extends Component {
             classNames='slide'
             >
               <NavSearch
-                onFocus={this.props.handleInputFocus}
+                onFocus={() => this.props.handleInputFocus(this.props.list)}
                 onBlur={this.props.handleInputBlur}
                 className={ this.props.focused ? 'focused': ''}
                 >
@@ -70,13 +85,6 @@ class Header extends Component {
             {this.showSearchInfo()}
           </SearchWrapper>
       </Nav>
-      <Addition>
-        <Button className="writting">
-          <span className="iconfont">&#xe600;</span>
-          写文章
-        </Button>
-        <Button className="reg">注册</Button>
-      </Addition>
     </HeaderWrapper>
     )
   }
@@ -95,8 +103,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleInputFocus () {
-      dispatch(actionCreators.getList())
+    handleInputFocus (list) {
+      list.size === 0 && dispatch(actionCreators.getList())
       dispatch(actionCreators.searchFocus())
     },
     handleInputBlur () {
@@ -108,7 +116,15 @@ const mapDispatchToProps = (dispatch) => {
     handleMouseOut(){
       dispatch(actionCreators.Mouse_IN_Header())
     },
-    handlePage(cerrent,total){
+    handlePage(cerrent,total, spin){
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig, '')
+      if (originAngle) {
+        originAngle = parseInt(originAngle, 10)
+      }else {
+        originAngle = 0
+      }
+      spin.style.transform = `rotate(${originAngle+360}deg)`;
+      console.log("span", spin)
       if(cerrent<total-1){
         cerrent += 1
       }else {
