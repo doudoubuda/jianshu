@@ -6,7 +6,6 @@ export const HeaderWrapper =  styled.div`
   min-width: 768px;
   max-width: 1440px;
   margin: 0 auto;
-  border-bottom: 1px solid #f0f0f0
 `
 
 export const Logo =  styled.a`

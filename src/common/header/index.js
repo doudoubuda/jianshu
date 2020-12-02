@@ -50,42 +50,44 @@ class Header extends Component {
   }
   render(){
     return (
-      <HeaderWrapper>
-      <Logo href="/"/>
-      <Nav>
-        <NavItem className="left active">首页</NavItem>  
-        <NavItem className="left">下载APP</NavItem>
-        <NavItem className="right">
-        <Addition>
-        <Button className="writting">
-          <span className="iconfont">&#xe600;</span>
-          写文章
-        </Button>
-        <Button className="reg">注册</Button>
-      </Addition>
-        </NavItem>
-        <NavItem className="right">登录</NavItem>
-        <NavItem className="right">
-          <span className="iconfont">&#xe612;</span>
-        </NavItem>
-          <SearchWrapper>
-           <CSSTransition
-            in={this.props.focused}
-            timeout={300}
-            classNames='slide'
-            >
-              <NavSearch
-                onFocus={() => this.props.handleInputFocus(this.props.list)}
-                onBlur={this.props.handleInputBlur}
-                className={ this.props.focused ? 'focused': ''}
+      <div style={{borderBottom: '1px solid #f0f0f0'}}>
+        <HeaderWrapper>
+          <Logo href="/"/>
+          <Nav>
+            <NavItem className="left active">首页</NavItem>  
+            <NavItem className="left">下载APP</NavItem>
+            <NavItem className="right">
+          <Addition>
+            <Button className="writting">
+              <span className="iconfont">&#xe600;</span>
+              写文章
+            </Button>
+            <Button className="reg">注册</Button>
+          </Addition>
+            </NavItem>
+            <NavItem className="right">登录</NavItem>
+            <NavItem className="right">
+              <span className="iconfont">&#xe612;</span>
+            </NavItem>
+              <SearchWrapper>
+              <CSSTransition
+                in={this.props.focused}
+                timeout={300}
+                classNames='slide'
                 >
-              </NavSearch>
-            </CSSTransition>
-            <span className={this.props.focused ? "focused iconfont": 'iconfont'}>&#xe610;</span>
-            {this.showSearchInfo()}
-          </SearchWrapper>
-      </Nav>
-    </HeaderWrapper>
+                  <NavSearch
+                    onFocus={() => this.props.handleInputFocus(this.props.list)}
+                    onBlur={this.props.handleInputBlur}
+                    className={ this.props.focused ? 'focused': ''}
+                    >
+                  </NavSearch>
+                </CSSTransition>
+                <span className={this.props.focused ? "focused iconfont": 'iconfont'}>&#xe610;</span>
+                {this.showSearchInfo()}
+              </SearchWrapper>
+          </Nav>
+        </HeaderWrapper>
+      </div>
     )
   }
 }
