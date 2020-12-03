@@ -11,7 +11,6 @@ const defaultState = fromJS({
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state=defaultState, action) => {
-  console.log("action.type", action)
   switch(action.type){
     case actionsType.SEARCH_FOCUS:
       return state.set('focused', !state.get('focused')) 

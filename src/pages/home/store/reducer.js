@@ -1,4 +1,5 @@
 import { fromJS } from 'immutable'
+import * as actionsType from './constants'
 
 const defaultState = fromJS({
   topicList: [
@@ -85,14 +86,19 @@ const defaultState = fromJS({
       title: '',
       imgUrl: './assets/vip.png',
     },
-  ]
+  ],
+  articlePage: 0,
 })
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state=defaultState, action) => {
-  switch(action.type){    
+  switch(action.type){ 
+    case actionsType.ADD_ARTICLE_LIST:
+      return state.merge({
+        'articleList' : state.get('articleList').concat(action.data),
+        'articlePage': action.nextPage
+      })
     default:
       return state
   }
-
 }

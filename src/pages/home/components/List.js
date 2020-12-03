@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { ListWrapper, ListItem} from '../style'
+import { ListWrapper, ListItem, LoadMore} from '../style'
 import ListImg from '../../../static/topic.jpg'
 import { connect } from 'react-redux'
+import  { actionCreators } from '../store';
 
  class List extends Component {
   render() {
@@ -25,8 +26,9 @@ import { connect } from 'react-redux'
                 <img className="ListImg" src={ListImg} alt=""/>
               </ListItem>
             )
-          })
+          })         
         }
+        <LoadMore onClick={() => this.props.handleLoadMore(this.props.articlePage)}>加载更多</LoadMore>
       </ListWrapper>
     )
   }
@@ -35,7 +37,15 @@ const mapStateToProps = (state) => {
   return {
     //把仓库里的数据映射到props
     List: state.get('topic').get('articleList'),
+    articlePage: state.get('topic').get('articlePage'),
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLoadMore(articlePage){
+      dispatch(actionCreators.getList(articlePage))
+     }
   }
 }
 
-export default connect(mapStateToProps, null)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(List)

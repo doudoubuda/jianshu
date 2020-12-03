@@ -1,0 +1,1 @@
+export const ADD_ARTICLE_LIST = 'ADD_ARTICLE_LIST'
