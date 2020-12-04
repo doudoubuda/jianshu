@@ -6,6 +6,10 @@ export const ADD_ARTICLE_LIST = () => ({
   type: actionsType.ADD_ARTICLE_LIST
 })
 
+export const SCROLL_TOP = (data) => ({
+  type: actionsType.SCROLL_TOP,
+  showBackTop: data
+})
 const addArticleList = (data, nextPage) => ({
   type: actionsType.ADD_ARTICLE_LIST,
   data: fromJS(data),

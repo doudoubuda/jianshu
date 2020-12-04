@@ -88,6 +88,7 @@ const defaultState = fromJS({
     },
   ],
   articlePage: 0,
+  showBackTop: false,
 })
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -98,6 +99,8 @@ export default (state=defaultState, action) => {
         'articleList' : state.get('articleList').concat(action.data),
         'articlePage': action.nextPage
       })
+    case actionsType.SCROLL_TOP:
+      return state.set('showBackTop', action.showBackTop)
     default:
       return state
   }
