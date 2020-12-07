@@ -1,30 +1,33 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { ListWrapper, ListItem, LoadMore} from '../style'
 import ListImg from '../../../static/topic.jpg'
 import { connect } from 'react-redux'
 import  { actionCreators } from '../store';
+import { Link } from 'react-router-dom'
 
- class List extends Component {
+ class List extends PureComponent {
   render() {
     return (
       <ListWrapper>
         {
           this.props.List.map( (item, index) => {
             return (
-              <ListItem key={item.get('id')}> 
-                <div className="article">
-                  <div className="title">
-                   <h2>{item.get('title')}</h2>
+              <Link to='/detail' style={{ textDecoration:'none', color: 'black'}} key={item.get('id')}>
+                <ListItem > 
+                  <div className="article">
+                    <div className="title">
+                    <h2>{item.get('title')}</h2>
+                    </div>
+                    <div className="arcticle-content">
+                    {item.get('desc')}
+                    </div>
+                    <div className="tips">
+                    作者：
+                    </div>
                   </div>
-                  <div className="arcticle-content">
-                  {item.get('desc')}
-                  </div>
-                  <div className="tips">
-                   作者：
-                  </div>
-                </div>
-                <img className="ListImg" src={ListImg} alt=""/>
-              </ListItem>
+                  <img className="ListImg" src={ListImg} alt=""/>
+                </ListItem>
+              </Link>
             )
           })         
         }

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper,
   SearchInfo, SearchInfoTitle, SearchInfoSwitch,SearchInfoItem,SearchInfoList
 } from './style'
 import { CSSTransition } from 'react-transition-group';
 import  { actionCreators } from './store';
+import { Link } from 'react-router-dom'
 
-
-class Header extends Component {
+class Header extends PureComponent {
    showSearchInfo  () {
     let panelList = []
     let list = this.props.list.toJS()
@@ -52,7 +52,9 @@ class Header extends Component {
     return (
       <div style={{borderBottom: '1px solid #f0f0f0'}}>
         <HeaderWrapper>
-          <Logo href="/"/>
+          <Link to="/">
+            <Logo />
+          </Link>
           <Nav>
             <NavItem className="left active">首页</NavItem>  
             <NavItem className="left">下载APP</NavItem>
