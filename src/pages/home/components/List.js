@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
         {
           this.props.List.map( (item, index) => {
             return (
-              <Link to='/detail' style={{ textDecoration:'none', color: 'black'}} key={item.get('id')}>
+              <Link to={'/detail/' + item.get('id')} style={{ textDecoration:'none', color: 'black'}} key={item.get('id')}>
                 <ListItem > 
                   <div className="article">
                     <div className="title">

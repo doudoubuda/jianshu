@@ -3,6 +3,7 @@ import { DetailWrapper, DetailRight, DetailLeft} from './style'
 
 export default class Detail extends Component {
   render() {
+    console.log("this.props", this.props.match.params.id)
     return (
       <DetailWrapper>
         <div className="content">
