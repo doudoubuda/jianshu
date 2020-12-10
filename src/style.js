@@ -33,6 +33,9 @@ export const GlobalStyled  = createGlobalStyle `
     }
     body {
       line-height: 1;
+      width: 100%;
+      height: 100%;
+      background: rgb(249,249,249)
     }
     ol, ul {
       list-style: none;
@@ -50,6 +53,9 @@ export const GlobalStyled  = createGlobalStyle `
       border-spacing: 0;
     }
     #root {
-      background: rgb(249,249,249)
+    }
+    .container {
+      width: 100%;
+      height: 100%;
     }
 `;
